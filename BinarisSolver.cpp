@@ -14,3 +14,19 @@ BinarisSolver::~BinarisSolver(){
 }
 
 
+void BinarisSolver::solve(){
+    bool found;
+    do {
+        found = false;
+        found = found | check_all_max_copies();
+    } while( !grid->full() && found );
+
+    if(grid->full()){
+        cout << "Puzzle solved!" << endl << endl;
+    } else {
+        cout << "Unable to fully solve puzzle." << endl << endl;
+    }
+
+    grid->print();
+
+}

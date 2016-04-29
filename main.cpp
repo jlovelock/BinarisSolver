@@ -6,8 +6,7 @@ using namespace std;
 
 int main(){
     BinarisSolver b;
-    b.check_all_max_copies();
-    b.grid->print();
+    b.solve();
     return 0;
 }
 

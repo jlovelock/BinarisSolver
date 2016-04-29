@@ -56,9 +56,9 @@ void Grid::set_grid_size(){
             break;
         }
     } while (true);
+    cout << endl;
     cin.get(); //clear extra newline from stream
 }
-
 
 
 void Grid::print(){
@@ -124,4 +124,13 @@ bool Grid::out_of_bounds(pair<int,int> coords){
         coords.first >= n ||
         coords.second < 0 ||
         coords.second >= n;
+}
+
+bool Grid::full(){
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j < n; j++){
+            if(vals[i][j] == BLANK) return false;
+        }
+    }
+    return true;
 }

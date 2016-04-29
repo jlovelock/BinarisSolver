@@ -11,14 +11,17 @@ public:
     BinarisSolver();
     ~BinarisSolver();
     Grid *grid, *original;
-    void check_all_max_copies();
+    void solve();
+
 
 private:
     void advance(std::pair<int,int>& coords, std::pair<int,int>& direction);
     void fill_blanks(int num, bool is_row, int fill_with);
 
+    /* check_quantities.cpp */
+    bool check_all_max_copies();
     int max_copies();
-    void counter(int num, bool is_row);
+    bool counter(int num, bool is_row);
 
 };
 

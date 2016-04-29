@@ -14,18 +14,25 @@ using namespace std;
  **   all remaining blanks in that row must be filled with the opposite number.
  **/
 
-void BinarisSolver::check_all_max_copies(){
+
+/*
+ * Returns true if at least one row/col was updated via this logic
+ */
+bool BinarisSolver::check_all_max_copies(){
+    bool found = false;
     for(int i = 0; i < grid->size(); i++){
-        counter(i, true);
-        counter(i, false);
+        found = found | counter(i, true);
+        found = found | counter(i, false);
     }
+    return found;
 }
 
 /*
  * Eg. num=2, is_row=false, checks column 2
  * Checks how many ones/zeroes are in that line, and if that's equal to the max possible
+ * Returns true if this row/col was updated via this logic
  */
-void BinarisSolver::counter(int num, bool is_row){
+bool BinarisSolver::counter(int num, bool is_row){
     pair<int,int> coord = ( is_row ? make_pair(num, 0) : make_pair(0, num) );
     pair<int,int> dir   = ( is_row ? make_pair(0, 1)   : make_pair(1, 0)   );
     int zeros = 0, ones = 0;
@@ -44,9 +51,12 @@ void BinarisSolver::counter(int num, bool is_row){
 
     if(zeros == max_copies() && ones < max_copies()){
         fill_blanks(num, is_row, 1);
+        return true;
     } else if(zeros < max_copies() && ones == max_copies()){
         fill_blanks(num, is_row, 0);
+        return true;
     }
+    return false;
 }
 
 
@@ -59,7 +69,7 @@ void BinarisSolver::fill_blanks(int num, bool is_row, int fill_with){
 
             /** Update move log here too! **/
             grid->set(coord, fill_with);
-            cout << "$ (" << coord.first << "," << coord.second << ") = " << fill_with << endl;
+            //cout << "$ (" << coord.first << "," << coord.second << ") = " << fill_with << endl;
         }
     }
 }

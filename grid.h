@@ -17,6 +17,7 @@ public:
 
     bool out_of_bounds(std::pair<int,int> coords);
     int size(){ return n; }
+    bool full();
 
 private:
     int** vals;
