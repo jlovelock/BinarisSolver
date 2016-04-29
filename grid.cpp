@@ -5,9 +5,9 @@
 #include <iostream>
 using namespace std;
 
-Grid::Grid(int sz){
+Grid::Grid(){
     /* allocate space */
-    n = sz;
+    set_grid_size();
     vals = new int*[n];
     for(int i = 0; i < n; i++){
         vals[i] = new int[n];
@@ -17,12 +17,48 @@ Grid::Grid(int sz){
     read();
 }
 
+Grid::Grid(Grid* g){
+    /* allocate space */
+    n = g->n;
+    vals = new int*[n];
+    for(int i = 0; i < n; i++){
+        vals[i] = new int[n];
+    }
+    /* set initial values */
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j < n; j++){
+            vals[i][j] = g->vals[i][j];
+        }
+    }
+}
+
 Grid::~Grid(){
     for(int i = 0; i < n; ++i) {
         delete [] vals[i];
     }
     delete [] vals;
 }
+
+void Grid::set_grid_size(){
+    do {
+        cout << "Enter the grid size: ";
+        cin >> n;
+        cout << endl;
+
+        /* sanitize */
+        if(n <= 0){
+            cout << "Positive integers only." << endl << endl;
+            continue;
+        } else if (n % 2){
+            cout << "Even numbers only." << endl << endl;
+            continue;
+        } else {
+            break;
+        }
+    } while (true);
+    cin.get(); //clear extra newline from stream
+}
+
 
 
 void Grid::print(){

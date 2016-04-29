@@ -6,7 +6,8 @@
 
 class Grid {
 public:
-    Grid(int);
+    Grid();
+    Grid(Grid*);
     ~Grid();
 
     void read();
@@ -14,10 +15,13 @@ public:
     int at(std::pair<int,int>);
 
     bool out_of_bounds(std::pair<int,int> coords);
+    int size(){ return n; }
 
 private:
     int** vals;
+
     int n;
+    void set_grid_size();
 
     void clear_grid();
 };
