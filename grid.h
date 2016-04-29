@@ -13,6 +13,7 @@ public:
     void read();
     void print();
     int at(std::pair<int,int>);
+    void set(std::pair<int,int>, int val);
 
     bool out_of_bounds(std::pair<int,int> coords);
     int size(){ return n; }

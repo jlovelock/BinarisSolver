@@ -4,10 +4,12 @@
 using namespace std;
 
 BinarisSolver::BinarisSolver(){
-    grid = new Grid();
+    original = new Grid();
+    grid = new Grid(original);
 }
 
 BinarisSolver::~BinarisSolver(){
+    delete original;
     delete grid;
 }
 

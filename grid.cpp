@@ -102,9 +102,20 @@ void Grid::read(){
 
 int Grid::at(pair<int,int> coord){
     if(out_of_bounds(coord))
-        throw std::out_of_range("Illegal coordinates.");
+        throw std::out_of_range("Illegal coordinate access in Grid::at.");
 
     return vals[coord.first][coord.second];
+}
+
+void Grid::set(pair<int,int> coord, int val){
+    if(out_of_bounds(coord))
+        throw std::out_of_range("Illegal coordinate access in Grid::set.");
+
+    /* Sanity: any input other than 0/1 interpreted as blank. */
+    if(val != 0 && val != 1)
+        val = BLANK;
+
+    vals[coord.first][coord.second] = val;
 }
 
 bool Grid::out_of_bounds(pair<int,int> coords){

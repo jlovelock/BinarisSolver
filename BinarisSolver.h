@@ -10,14 +10,15 @@ class BinarisSolver {
 public:
     BinarisSolver();
     ~BinarisSolver();
-    Grid* grid;
+    Grid *grid, *original;
+    void check_all_max_copies();
 
 private:
     void advance(std::pair<int,int>& coords, std::pair<int,int>& direction);
-
-    void counter(int num, bool is_row);
     void fill_blanks(int num, bool is_row, int fill_with);
+
     int max_copies();
+    void counter(int num, bool is_row);
 
 };
 
