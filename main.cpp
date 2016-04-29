@@ -1,9 +1,12 @@
 
 #include <BinarisSolver.h>
+#include <iostream>
+using namespace std;
 
 
 int main(){
     BinarisSolver b;
-    b.print_grid();
+    b.grid->print();
     return 0;
 }
+
