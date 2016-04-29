@@ -3,7 +3,9 @@
 #include <defines.h>
 #include <stdexcept>
 #include <iostream>
+#include <move.h>
 using namespace std;
+
 
 /**
  ** Logic for this file's subroutines:
@@ -67,8 +69,12 @@ void BinarisSolver::fill_blanks(int num, bool is_row, int fill_with){
     for( ; !grid->out_of_bounds(coord); advance(coord, dir) ){
         if( grid->at(coord) == BLANK ){
 
-            /** Update move log here too! **/
             grid->set(coord, fill_with);
+
+            /** Update move log! **/
+            MaxCopiesMove m(coord, fill_with, is_row);
+            moves.push_back(m);
+            //moves.push_back(Move(coord, num, "max copies"));
             //cout << "$ (" << coord.first << "," << coord.second << ") = " << fill_with << endl;
         }
     }
