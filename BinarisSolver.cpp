@@ -1,6 +1,7 @@
 
 #include <BinarisSolver.h>
 #include <iostream>
+#include <stdexcept>
 using namespace std;
 
 BinarisSolver::BinarisSolver(){
@@ -19,8 +20,18 @@ BinarisSolver::~BinarisSolver(){
 void BinarisSolver::solve(){
     bool found;
     do {
-        found = false;
-        found = found | check_all_max_copies();
+        try {
+            found = false;
+            found = found | check_all_pairs();
+            found = found | check_all_max_copies();
+        }
+        catch (invalid_argument e) {
+            cout << "Invalid grid provided: " << e.what() << endl;
+            print_log();
+            cout << "Grid at final step:" << endl;
+            grid->print();
+            return;
+        }
     } while( !grid->full() && found );
 
     if(grid->full()){
@@ -35,6 +46,7 @@ void BinarisSolver::solve(){
 
 
 void BinarisSolver::print_log(){
+    cout << "Solution log:" << endl;
     for(auto it = moves.begin(); it != moves.end(); ++it){
         cout << it->description() << endl;
     }

@@ -12,20 +12,23 @@ class BinarisSolver {
 public:
     BinarisSolver();
     ~BinarisSolver();
-    Grid *grid, *original;
     void solve();
     void print_log();
 
 private:
-    void advance(std::pair<int,int>& coords, std::pair<int,int>& direction);
-    void fill_blanks(int num, bool is_row, int fill_with);
+    std::vector<Move> moves; /* step-by-step solution logging */
+
+    Grid *grid, *original;
 
     /* check_quantities.cpp */
     bool check_all_max_copies();
     int max_copies();
     bool counter(int num, bool is_row);
-    std::vector<Move> moves;
+    void fill_blanks(int num, bool is_row, int fill_with);
 
+    /* check_pairs.cpp */
+    bool check_all_pairs();
+    bool check_pair(std::pair<int,int>, std::pair<int,int>);
 };
 
 #endif // BINARIS_SOLVER_H

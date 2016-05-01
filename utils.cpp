@@ -2,13 +2,14 @@
 #include <BinarisSolver.h>
 #include <iostream>
 #include <utility>
+#include <sstream>
 using namespace std;
 
 
 
-void BinarisSolver::advance(pair<int,int>& coords, pair<int,int>& direction){
-    coords.first += direction.first;
-    coords.second += direction.second;
+void advance(pair<int,int>& coords, pair<int,int> direction, int n_steps){
+    coords.first += direction.first * n_steps;
+    coords.second += direction.second * n_steps;
 }
 
 /*
@@ -16,4 +17,10 @@ void BinarisSolver::advance(pair<int,int>& coords, pair<int,int>& direction){
  */
 int BinarisSolver::max_copies(){
     return grid->size()/2;
+}
+
+string str(pair<int,int> coord){
+    stringstream ss;
+    ss << "(" << coord.first << "," << coord.second << ")";
+    return ss.str();
 }

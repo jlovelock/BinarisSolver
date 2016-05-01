@@ -47,9 +47,9 @@ bool BinarisSolver::counter(int num, bool is_row){
     }
 
     if(zeros > max_copies())
-        throw invalid_argument("Too many zeros");
+        throw invalid_argument("Too many zeros per line");
     else if (ones > max_copies())
-        throw invalid_argument("Too many ones");
+        throw invalid_argument("Too many ones per line");
 
     if(zeros == max_copies() && ones < max_copies()){
         fill_blanks(num, is_row, 1);
@@ -70,12 +70,7 @@ void BinarisSolver::fill_blanks(int num, bool is_row, int fill_with){
         if( grid->at(coord) == BLANK ){
 
             grid->set(coord, fill_with);
-
-            /** Update move log! **/
-            MaxCopiesMove m(coord, fill_with, is_row);
-            moves.push_back(m);
-            //moves.push_back(Move(coord, num, "max copies"));
-            //cout << "$ (" << coord.first << "," << coord.second << ") = " << fill_with << endl;
+            moves.push_back( MaxCopiesMove(coord, fill_with, is_row) );
         }
     }
 }
