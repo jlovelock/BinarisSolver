@@ -44,3 +44,11 @@ FoundPairMove::FoundPairMove(pair<int,int> c, int v, pair<int,int> d) : Move(c, 
     ss << str(tmp);
     desc = ss.str();
 }
+
+FoundGapMove::FoundGapMove(pair<int,int> c, int v, bool row) : Move(c, v){
+    is_row = row;
+
+    stringstream ss;
+    ss << "gap between two " << !value << "'s along " << ( is_row ? "row " : "col " ) << ( is_row ? coord.first : coord.second );
+    desc = ss.str();
+}

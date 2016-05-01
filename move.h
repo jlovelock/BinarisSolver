@@ -41,5 +41,12 @@ class FoundPairMove : public Move {
 
 };
 
+class FoundGapMove : public Move {
+    public:
+        FoundGapMove(std::pair<int,int>, int, bool);
+    private:
+        bool is_row;
+};
+
 #endif // MOVE_H
 

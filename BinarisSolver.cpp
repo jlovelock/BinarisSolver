@@ -24,6 +24,7 @@ void BinarisSolver::solve(){
             found = false;
             found = found | check_all_pairs();
             found = found | check_all_max_copies();
+            found = found | check_all_gaps();
         }
         catch (invalid_argument e) {
             cout << "Invalid grid provided: " << e.what() << endl;

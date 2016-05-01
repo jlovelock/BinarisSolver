@@ -29,6 +29,10 @@ private:
     /* check_pairs.cpp */
     bool check_all_pairs();
     bool check_pair(std::pair<int,int> coord, std::pair<int,int> dir);
+
+    /* check_gaps.cpp */
+    bool check_all_gaps();
+    bool check_gap(std::pair<int,int> coord, bool is_row);
 };
 
 #endif // BINARIS_SOLVER_H
