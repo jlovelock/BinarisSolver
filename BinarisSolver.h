@@ -16,9 +16,9 @@ public:
     void print_log();
 
 private:
-    std::vector<Move> moves; /* step-by-step solution logging */
-
     Grid *grid, *original;
+    std::vector<Move> moves; /* step-by-step solution logging */
+    void cleanup();
 
     /* check_quantities.cpp */
     bool check_all_max_copies();
@@ -28,7 +28,7 @@ private:
 
     /* check_pairs.cpp */
     bool check_all_pairs();
-    bool check_pair(std::pair<int,int>, std::pair<int,int>);
+    bool check_pair(std::pair<int,int> coord, std::pair<int,int> dir);
 };
 
 #endif // BINARIS_SOLVER_H

@@ -43,7 +43,6 @@ void Grid::set_grid_size(){
     do {
         cout << "Enter the grid size: ";
         cin >> n;
-        cout << endl;
 
         /* sanitize */
         if(n <= 0){
@@ -98,6 +97,7 @@ void Grid::read(){
                 vals[i][j] = 1;
         }
     }
+    cout << endl;
 }
 
 int Grid::at(pair<int,int> coord){

@@ -27,28 +27,33 @@ void BinarisSolver::solve(){
         }
         catch (invalid_argument e) {
             cout << "Invalid grid provided: " << e.what() << endl;
-            print_log();
-            cout << "Grid at final step:" << endl;
-            grid->print();
-            return;
+            break;
         }
     } while( !grid->full() && found );
+    cleanup();
+}
 
+void BinarisSolver::cleanup(){
     if(grid->full()){
         cout << "Puzzle solved!" << endl << endl;
     } else {
-        cout << "Unable to fully solve puzzle." << endl << endl;
+        cout << "Unable to fully solve puzzle." <<  endl << endl;
+        cout << "Grid at final state: " << endl;
     }
-    print_log();
+
     grid->print();
-
+    cout << endl << "Print solution log? (y/n) ";
+    char input;
+    cin >> input;
+    if (input == 'y') print_log();
 }
-
-
 void BinarisSolver::print_log(){
-    cout << "Solution log:" << endl;
-    for(auto it = moves.begin(); it != moves.end(); ++it){
-        cout << it->description() << endl;
+    if(moves.empty()){
+        cout << "No solution steps to display." << endl;
+    } else {
+        for(auto it = moves.begin(); it != moves.end(); ++it){
+            cout << it->description() << endl;
+        }
     }
     cout << endl;
 }

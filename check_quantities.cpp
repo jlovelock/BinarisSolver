@@ -31,8 +31,9 @@ bool BinarisSolver::check_all_max_copies(){
 
 /*
  * Eg. num=2, is_row=false, checks column 2
- * Checks how many ones/zeroes are in that line, and if that's equal to the max possible
- * Returns true if this row/col was updated via this logic
+ * Checks how many ones/zeroes are in that line
+ * If that's equal to the max possible, fills the rest of that line's BLANKs with the opposite
+ * Returns true if any cells were updated
  */
 bool BinarisSolver::counter(int num, bool is_row){
     pair<int,int> coord = ( is_row ? make_pair(num, 0) : make_pair(0, num) );
@@ -68,7 +69,6 @@ void BinarisSolver::fill_blanks(int num, bool is_row, int fill_with){
 
     for( ; !grid->out_of_bounds(coord); advance(coord, dir) ){
         if( grid->at(coord) == BLANK ){
-
             grid->set(coord, fill_with);
             moves.push_back( MaxCopiesMove(coord, fill_with, is_row) );
         }
